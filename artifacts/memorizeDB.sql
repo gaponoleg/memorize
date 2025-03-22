@@ -1,0 +1,26 @@
+CREATE DATABASE IF NOT EXISTS memorize;
+ 
+USE memorize;
+ 
+DROP TABLE IF EXISTS users;
+CREATE TABLE users
+(
+  id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  name VARCHAR(50) NOT NULL,
+  email VARCHAR(50) NOT NULL,
+  password VARCHAR(50) NOT NULL
+);
+CREATE UNIQUE INDEX users_id_uindex ON users (id);
+CREATE UNIQUE INDEX users_email_uindex ON users (email);
+
+DROP TABLE IF EXISTS notes;
+CREATE TABLE notes
+(
+  id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  user_id INT NOT NULL,
+  title VARCHAR(50) NOT NULL,
+  text VARCHAR(10000) NOT NULL,
+  progress INT DEFAULT 0,
+  align BOOLEAN DEFAULT 0
+);
+CREATE UNIQUE INDEX notes_id_uindex ON notes (id);
